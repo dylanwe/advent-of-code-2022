@@ -10,18 +10,17 @@ fun findFirstMarker(input: String): Int {
 	// store the input character and its index
 	var map: MutableMap<Char, Int> = HashMap()
 
-	for (i in input.indices) {
+	for ((index, currentChar) in input.withIndex()) {
 		if (map.size == 4) break
-
-		val currentChar = input[i]
 
 		if (map.containsKey(currentChar)) {
 			// remove all characters that come before or are the duplicate character
-			map = map.filterValues { it > map[currentChar]!! }
+			map = map
+				.filterValues { it > map[currentChar]!! }
 				.toMutableMap()
 		}
 
-		map[currentChar] = i
+		map[currentChar] = index
 	}
 
 	// return the highest index + 1 or the current loop position + 1
