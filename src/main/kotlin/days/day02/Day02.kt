@@ -37,14 +37,14 @@ fun part2(input: List<String>): Int {
         // base move
         val base = 'A'
 
-        // calculate move value based on win or loss
-        val move = when(outcome) {
+        // calculate move value based on player has to win, draw or lose
+        points += when(outcome) {
             3 -> scores[otherMove - base]
             6 -> scores[((otherMove - base) + 1) % scores.size]
             else -> scores[((otherMove - base) + 2) % scores.size]
         }
 
-        points += move + outcome
+        points += outcome
 	}
 
 	return points
@@ -53,4 +53,5 @@ fun part2(input: List<String>): Int {
 fun main() {
     val input = File("src/main/kotlin/days/day02/input.txt").readLines()
     println(part1(input))
+    println(part2(input))
 }
